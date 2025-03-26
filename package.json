@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "private": true,
+  "workspaces": [
+    "ui-server",
+    "server"
+  ],
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-app": "concurrently \"npm run start-server\" \"npm run start-ui\"",
+    "start-server": "cross-env node server/index.js",
+    "start-ui": "cross-env npm run dev --prefix ui-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "express": "^4.21.2",
+    "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

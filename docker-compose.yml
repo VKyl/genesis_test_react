@@ -1,0 +1,13 @@
+version: '3'
+services:
+  ui-server:
+    build:
+      context: ./ui-server
+    ports:
+      - "5173:80"
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - "3000:3000"

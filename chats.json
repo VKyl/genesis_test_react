@@ -1,0 +1,14 @@
+{
+  "chats": [
+    {
+     "user1": "user_name",
+     "user2": "user_name",
+      "messages": [
+        {
+          "sender": "user_name",
+          "message": "some message"
+        }
+      ]
+    }
+  ]
+}
