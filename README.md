@@ -1,7 +1,7 @@
 # Test chat app
 #### Credentials: Viktor Kyliukh 
 
-Start the app with Docker desktop:
+Start the app with Docker desktop from root directory:
 ```bash
 docker compose up --build
 ```
