@@ -10,4 +10,4 @@ Docker Engine:
 ```bash
 docker-compose up --build
 ```
-## Frontend (React): [click this link](http://localhost:5173)
+## Frontend: [click this link](http://localhost:5173)

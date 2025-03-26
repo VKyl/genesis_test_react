@@ -3,11 +3,29 @@ services:
   ui-server:
     build:
       context: ./ui-server
+    image: genesis-frontend
     ports:
       - "5173:80"
 
   server:
     build:
       context: ./server
+    image: genesis-backend
     ports:
       - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/your-database-name
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongodb-data:
