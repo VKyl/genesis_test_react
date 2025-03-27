@@ -2,8 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start-server": "cross-env node main/index.js",
+    "start-server": "cross-env npx tsc && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,7 +14,12 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "express": "^4.21.2",
-    "ws": "^8.18.1",
-    "socket.io": "~4.8.1"
+    "socket.io": "^4.8.1",
+    "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/socket.io": "^3.0.1",
+    "typescript": "^5.8.2"
   }
 }
