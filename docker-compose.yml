@@ -1,33 +1,38 @@
 version: '3'
 services:
   mongodb:
+    env_file:
+      - .env
     image: mongo
     command: --quiet
     container_name: mongodb
     ports:
-      - "27017:27017"
+      - "${DB_PORT}:27017"
     networks:
       - app-network
-      - default
     volumes:
       - mongodb-data:/data/db
     restart: unless-stopped
 
   ui-server:
+    env_file:
+      - .env
     build:
       context: ./ui-server
     image: genesis-frontend
     ports:
-      - "5173:80"
+      - "${UI_PORT}:8000"
 
   server:
+    env_file:
+      - .env
     build:
       context: ./server
     image: genesis-backend
     ports:
-      - "3000:3000"
+      - "${SERVER_PORT}:3000"
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/genesis-test
+      - DB_LINK=${DB_LINK}
     depends_on:
       - mongodb
     networks:

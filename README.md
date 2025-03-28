@@ -3,14 +3,16 @@
 
 Start the app with Docker desktop from root directory:
 ```bash
-docker compose up --build
+npm run start
 ```
 Or
 Docker Engine:
 ```bash
-docker-compose up --build
+npm run start-docker-engine
 ```
-## To view the Frontend: [click this link](http://localhost:5173)
+
+> ## **⚠️ IMPORTANT️**
+> #### Create you own .env file with ports and links (look up in .env.example)
 
 # About the solution:
 

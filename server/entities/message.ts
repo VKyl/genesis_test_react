@@ -1,4 +1,5 @@
 export interface MessageResponseDto {
+    _id: string;
     sender_id: string,
     message: string,
     timestamp: string,

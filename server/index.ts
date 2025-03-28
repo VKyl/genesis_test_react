@@ -6,11 +6,12 @@ import {DB_COLLECTIONS} from "./services/constants";
 
 const httpServer = createServer();
 const io = new Server(httpServer, {});
-const dBService: DatabaseService = new DatabaseService(DB_LINK);
+DatabaseService.instance.connect(DB_LINK);
+
 io.on("connection", (socket) => {
   socket.on("message", (message) => {
     socket.emit("message", message);
-    dBService.getCollection(DB_COLLECTIONS.USERS).then((entity) => {
+    DatabaseService.instance.getEntityById("67e541f7f63bec4693f25bb5", DB_COLLECTIONS.USERS).then((entity) => {
       console.log(entity)
     })
   })

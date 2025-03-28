@@ -16,4 +16,4 @@ export interface SocketData {
   age: number;
 }
 
-export const DB_LINK: string = process.env.DB_LINK || "mongodb://mongodb:27017/genesis-test"
+export const DB_LINK: string = process.env.DB_LINK || ""
