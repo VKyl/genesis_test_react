@@ -19,7 +19,7 @@ const validateRequest = (req: Request)=> {
 
 export const newChatResolver = async (req: Request, res: Response) => {
     try {
-        validateRequest(req, res)
+        validateRequest(req)
 
         const chatUsers = [new Types.ObjectId(req.body.u1_id as string),
                                            new Types.ObjectId(req.body.u2_id as string)];
