@@ -12,18 +12,14 @@ const isExistingChat = async (chatUsers: Types.ObjectId[]) =>
         .then((chat) => {
             console.log(!!chat, chat); return !!chat})
 
-const validateRequest = (req: Request, res: Response): boolean => {
+const validateRequest = (req: Request)=> {
     const validationRes = validationResult(req);
-    if (!validationRes.isEmpty()) {
-        res.status(403).send({ message: "Not valid users" });
-        return false;
-    }
-    return true;
+    if (!validationRes.isEmpty()) throw new Error();
 };
 
 export const newChatResolver = async (req: Request, res: Response) => {
     try {
-        if (!validateRequest(req, res)) return;
+        validateRequest(req, res)
 
         const chatUsers = [new Types.ObjectId(req.body.u1_id as string),
                                            new Types.ObjectId(req.body.u2_id as string)];
