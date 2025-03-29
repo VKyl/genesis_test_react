@@ -28,9 +28,4 @@ const authUser = async (u_id: string) => (await DatabaseService.instance
 export const userAuthResolver = async (user: ParsedUrlQuery) => {
     if(!user.id) return createUser(user);
     return authUser(user.id as string);
-    // const userModel = await Model.create(user);
-    // return await DatabaseService.instance
-    //     .createEntity(userModel, DB_COLLECTIONS.USERS)
-    //     .then(res => res?.insertedId)
-    //     .catch(() => null)
 }

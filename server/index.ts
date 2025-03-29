@@ -3,7 +3,6 @@ import {Server} from "socket.io";
 import {DB_LINK, SocketType} from "./constants";
 import {DatabaseService} from "./services/database-service";
 import {SessionService} from "./services/session-service";
-import {UserResponseDTO} from "./entities/user";
 import {userAuthResolver} from "./resolvers/user-auth";
 
 const httpServer = createServer();
@@ -14,9 +13,9 @@ io.on("connection", (socket: SocketType) => {
   userAuthResolver(socket.handshake.query).then(u_id => {
           if (!u_id) return socket.disconnect()
           socket.data.u_id = u_id.toHexString()
+          SessionService.instance.addUser(socket);
   })
 
-  SessionService.instance.addUser(socket, {} as UserResponseDTO);
 
   socket.on("disconnect", () => {
     SessionService.instance.disconnectUser(socket.data.u_id)

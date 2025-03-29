@@ -1,6 +1,5 @@
 import {NOTIFICATION_TYPE, NotificationMessage} from "./constants";
 import {SocketType} from "../constants";
-import {UserResponseDTO} from "../entities/user";
 
 export class SessionService {
     protected userSockets: SocketType[] = [];
@@ -15,10 +14,10 @@ export class SessionService {
     }
 
     // public addUser(userSocket: SocketType, type: NOTIFICATION_TYPE =  NOTIFICATION_TYPE.CONNECTED){
-    public addUser(userSocket: SocketType, user: UserResponseDTO){
+    public addUser(userSocket: SocketType){
         this.broadcastAll({
             type: NOTIFICATION_TYPE.CONNECTED,
-            payload: user
+            payload: userSocket.data.u_id
         })
         this.userSockets.push(userSocket);
     }
