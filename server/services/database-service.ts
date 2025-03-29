@@ -44,4 +44,9 @@ export class DatabaseService {
         if (!this.db) return;
         return await this.db.collection(collection).find({query: query}).toArray();
     }
+
+    async createEntity(entity: Record<string, any>, collection: DB_COLLECTIONS){
+        if (!this.db) return null;
+        return await this.db.collection(collection).insertOne(entity);
+    }
 }

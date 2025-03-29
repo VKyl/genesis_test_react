@@ -1,4 +1,5 @@
 import {MessageResponseDto} from "./message";
+import mongoose from "mongoose";
 
 export interface ChatResponseDTO {
   _id: string;
@@ -6,6 +7,6 @@ export interface ChatResponseDTO {
   messages: MessageResponseDto[];
 }
 
-export interface ChatViewDTO {
+export interface ChatViewDTO extends mongoose.Document {
     users: string[];
 }

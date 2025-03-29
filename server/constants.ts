@@ -1,19 +1,11 @@
-export interface ClientToServerEvents {
-  hello: () => void;
-}
-export interface ServerToClientEvents {
-  noArg: () => void;
-  basicEmit: (a: number, b: string, c: Buffer) => void;
-  withAck: (d: string, callback: (e: number) => void) => void;
+import {Socket, DefaultEventsMap} from 'socket.io'
+
+export type SessionUser = {
+    u_id: string,
+    is_bot: boolean
 }
 
-export interface InterServerEvents {
-  ping: () => void;
-}
-
-export interface SocketData {
-  name: string;
-  age: number;
-}
+export const IMAGES = ['avatar1.png', 'avatar2.png', 'avatar3.png']
+export type SocketType = Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, SessionUser>
 
 export const DB_LINK: string = process.env.DB_LINK || ""
