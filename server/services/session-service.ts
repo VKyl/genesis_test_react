@@ -17,7 +17,7 @@ export class SessionService {
     public addUser(userSocket: SocketType){
         this.broadcastAll({
             type: NOTIFICATION_TYPE.CONNECTED,
-            payload: userSocket.data.u_id
+            payload: {userId: userSocket.data.u_id}
         })
         this.userSockets.push(userSocket);
     }

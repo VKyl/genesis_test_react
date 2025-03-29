@@ -1,19 +1,18 @@
-import {SocketType} from "../constants";
-import {NOTIFICATION_TYPE} from "../services/constants";
-import {SessionService} from "../services/session-service";
+import {IncomingMessage, ServerResponse} from "http";
+import {MessageViewDto, messageViewProps} from "../entities/message";
 
+const parseMessage = (data: any): MessageViewDto | null => {
+    if (typeof data !== "object" || data === null) return null;
 
-export const setUserInteractions = async (socket: SocketType) => {
-    socket.on(NOTIFICATION_TYPE.MESSAGE, (message: string) => {
-        try {
-            const {receiver_id, ...payload} = JSON.parse(message)
-            SessionService.instance.notify({
-                type: NOTIFICATION_TYPE.MESSAGE,
-                payload: payload
-            }, receiver_id)
-        }
-        catch (error) {
-            socket.emit(NOTIFICATION_TYPE.MESSAGE, error);
-        }
-    })
+    let parsedData: Record<string, any> = {};
+    for (let prop of messageViewProps) {
+        if (!data[prop] || typeof data[prop] !== "string") return null;
+        parsedData[prop] = data[prop];
+    }
+    return parsedData as MessageViewDto;
+}
+
+export const setUserMessageReceiving = async (req: IncomingMessage, res: ServerResponse) => {
+    if (req.method !== "POST") return res.writeHead(404, "Method Not Found");
+    const message = parseMessage(req);
 }
