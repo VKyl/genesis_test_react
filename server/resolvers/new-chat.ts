@@ -2,7 +2,7 @@ import {DatabaseService} from "../services/database-service";
 import {DB_COLLECTIONS} from "../services/constants";
 import {Types} from "mongoose";
 import {Response, Request} from "express";
-import {validationResult} from "express-validator";
+import {validateRequest} from "../constants";
 
 const isExistingChat = async (chatUsers: Types.ObjectId[]) =>
     DatabaseService.instance.getEntityByQuery({users: {
@@ -11,11 +11,6 @@ const isExistingChat = async (chatUsers: Types.ObjectId[]) =>
         DB_COLLECTIONS.CHATS)
         .then((chat) => {
             console.log(!!chat, chat); return !!chat})
-
-const validateRequest = (req: Request)=> {
-    const validationRes = validationResult(req);
-    if (!validationRes.isEmpty()) throw new Error();
-};
 
 export const newChatResolver = async (req: Request, res: Response) => {
     try {
@@ -36,10 +31,7 @@ export const newChatResolver = async (req: Request, res: Response) => {
         );
 
         res.status(200).send({ chat_id: newChat?.insertedId });
-        return;
-
     } catch (error) {
-        res.status(403).send({ message: "Not valid users" });
-        return;
+        res.status(400).send({ message: "Not valid users" });
     }
 };
