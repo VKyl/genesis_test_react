@@ -1,9 +1,11 @@
 import {Server} from "socket.io";
-import {DB_LINK, SocketType} from "./constants";
+import {chatCreationValidators, DB_LINK, messageSendingValidators, SocketType} from "./constants";
 import {DatabaseService} from "./services/database-service";
 import {SessionService} from "./services/session-service";
 import {authorize, userAuthResolver} from "./resolvers/user-auth";
 import express from "express";
+import {userMessageHandler} from "./resolvers/user-interaction";
+import {newChatResolver} from "./resolvers/new-chat";
 
 // const httpServer = createServer(setUserMessageReceiving);
 const app = express()
@@ -19,3 +21,14 @@ io.on("connection", (socket: SocketType) => {
         SessionService.instance.disconnectUser(socket.data.u_id)
     })
 });
+
+app.use(express.json())
+
+app.post("/chat",
+    ...chatCreationValidators,
+     newChatResolver
+)
+
+app.post("/message",
+    ...messageSendingValidators,
+    userMessageHandler)

@@ -1,5 +1,7 @@
 // import {SocketType} from "../constants";
 
+import {body} from "express-validator";
+
 export enum DB_COLLECTIONS{
     USERS = "users",
     CHATS = "chats"

@@ -35,14 +35,19 @@ export class DatabaseService {
         return await this.db.collection(collection).findOne({_id: search_id});
     }
 
-    async getEntityByQuery(query: mongoose.Query<any, any>, collection: DB_COLLECTIONS){
+    async getEntityByQuery(query: Record<any, any>, collection: DB_COLLECTIONS){
         if (!this.db) return;
-        return await this.db.collection(collection).findOne({query: query});
+        return await this.db.collection(collection).findOne(query);
     }
 
-    async getEntityGroupByQuery(query: mongoose.Query<any, any>, collection: DB_COLLECTIONS){
+    async getEntityGroupByQuery(query: Record<string, any>, collection: DB_COLLECTIONS){
         if (!this.db) return;
-        return await this.db.collection(collection).find({query: query}).toArray();
+        return await this.db.collection(collection).find(query).toArray();
+    }
+
+    async updateEntityByQuery(query: Record<string, any>, updated: Record<string, any>, collection: DB_COLLECTIONS){
+        if (!this.db) return;
+        return await this.db.collection(collection).findOneAndUpdate(query, updated);
     }
 
     async createEntity(entity: Record<string, any>, collection: DB_COLLECTIONS){

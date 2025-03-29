@@ -13,8 +13,8 @@ const createUser = async (user: ParsedUrlQuery) => {
             is_bot: !!user.is_bot,
             image: genericAvatar()
         };
-        return await DatabaseService.instance
-        .createEntity(doc, DB_COLLECTIONS.USERS)
+
+        return await DatabaseService.instance.createEntity(doc, DB_COLLECTIONS.USERS)
         .then(res => res?.insertedId)
         .catch(() => null)
     }
@@ -25,7 +25,7 @@ const createUser = async (user: ParsedUrlQuery) => {
 const authUser = async (u_id: string) =>
     (DatabaseService.instance.getEntityById(u_id, DB_COLLECTIONS.USERS))
         .then(user => user?._id)
-        .catch(err => null);
+        .catch(() => null);
 
 export const userAuthResolver = async (user: ParsedUrlQuery) => {
     if(!user.id) return createUser(user);
