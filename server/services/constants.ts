@@ -6,13 +6,14 @@ export enum DB_COLLECTIONS{
 }
 
 export enum NOTIFICATION_TYPE {
+    AUTHORIZED = "AUTHORIZED",
     GET_CHATS = "GET_CHATS",
     CREATED = "CREATED",
     CONNECTED = "CONNECTED",
     TYPING = "TYPING",
     MESSAGE = "MESSAGE",
     READ = "READ",
-    DISCONNECTED = "DISCONNECTED",
+    DISCONNECTED = "DISCONNECTED"
 }
 
 export type NotificationMessage<T> = {
