@@ -14,15 +14,6 @@ services:
       - mongodb-data:/data/db
     restart: unless-stopped
 
-  ui-server:
-    env_file:
-      - .env
-    build:
-      context: ./ui-server
-    image: genesis-frontend
-    ports:
-      - "${UI_PORT}:8000"
-
   server:
     env_file:
       - .env
@@ -37,6 +28,17 @@ services:
       - mongodb
     networks:
       - app-network
+
+  ui-server:
+    env_file:
+      - .env
+#    depends_on:
+#      - server
+    build:
+      context: ./ui-server
+    image: genesis-frontend
+    ports:
+      - "${UI_PORT}:5173"
 
 networks:
   app-network:
