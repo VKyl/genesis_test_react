@@ -8,6 +8,8 @@ export type SessionUser = {
 }
 
 export const IMAGES = ['avatar1.png', 'avatar2.png', 'avatar3.png']
+export const genericAvatar = () => IMAGES[Math.floor(Math.random() * IMAGES.length)];
+
 export type SocketType = Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, SessionUser>
 
 export const validateRequest = (req: Request)=> {
@@ -43,5 +45,23 @@ export const messageSendingValidators = [
     body("receiver_id").exists({values: "falsy"})
         .isHexadecimal().isLength({min: 24, max: 24})
 ]
+
+export const botRequestOptions = {
+        port: process.env.SERVER_PORT,
+        path: "/message",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        }
+};
+
+export const chatRequestOptions = {
+        port: process.env.SERVER_PORT,
+        path: "/chats",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        }
+};
 
 export const DB_LINK: string = process.env.DB_LINK || ""

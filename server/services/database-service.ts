@@ -14,9 +14,9 @@ export class DatabaseService {
         return DatabaseService.#instance;
     }
 
-    public connect(link: string): void {
+    public async connect(link: string){
         if (!!this.db) return
-        mongoose.connect(link)
+        return mongoose.connect(link)
             .then(() => {
                 console.log('Connected to database', mongoose.connection.db?.databaseName);
                 this.db = mongoose.connection.db;

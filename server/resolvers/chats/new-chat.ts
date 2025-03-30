@@ -9,8 +9,7 @@ const isExistingChat = async (chatUsers: Types.ObjectId[]) =>
             $all: chatUsers
         }},
         DB_COLLECTIONS.CHATS)
-        .then((chat) => {
-            console.log(!!chat, chat); return !!chat})
+        .then((chat) => !!chat)
 
 export const newChatResolver = async (req: Request, res: Response) => {
     try {

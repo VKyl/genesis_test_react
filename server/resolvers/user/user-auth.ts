@@ -1,10 +1,8 @@
 import {DatabaseService} from "../../services/database-service";
 import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../../services/constants";
 import {ParsedUrlQuery} from "node:querystring";
-import {IMAGES, SocketType} from "../../constants";
+import {genericAvatar, IMAGES, SocketType} from "../../constants";
 import {SessionService} from "../../services/session-service";
-
-const genericAvatar = () => IMAGES[Math.floor(Math.random() * IMAGES.length)];
 
 const createUser = async (user: ParsedUrlQuery) => {
     try{
@@ -13,12 +11,14 @@ const createUser = async (user: ParsedUrlQuery) => {
             is_bot: !!user.is_bot,
             image: genericAvatar()
         };
-
         return await DatabaseService.instance.createEntity(doc, DB_COLLECTIONS.USERS)
-        .then(res => res?.insertedId)
+        .then(res => {
+            return res?.insertedId
+        })
         .catch(() => null)
     }
     catch(err){
+        console.log(err)
         return null
     }
 }

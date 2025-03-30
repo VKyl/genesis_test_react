@@ -1,3 +1,5 @@
+import {MessageResponseDto, MessageViewDto} from "./message";
+import {now} from "mongoose";
 
 export interface UserResponseDTO {
     _id: string;
@@ -19,3 +21,24 @@ export const parseUserDocument = (userDocument: any): UserResponseDTO => (
         image: userDocument.image,
     }
 )
+
+export type botMessageBuilder = (message: string) => string;
+
+export class Bot{
+    id: string = "";
+    name: string;
+    private readonly builder: botMessageBuilder;
+    constructor(name: string, builder: botMessageBuilder) {
+        this.name = name;
+        this.builder = builder;
+    }
+
+    handler(message: MessageResponseDto): MessageViewDto {
+        return {
+            sender_id: this.id,
+            timestamp: now().toISOString(),
+            message: this.builder(message.message),
+            receiver_id: message.sender_id
+        }
+    }
+}
