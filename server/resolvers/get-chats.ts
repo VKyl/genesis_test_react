@@ -24,6 +24,27 @@ export const getChats = async (req: Request, res: Response) => {
         );
         res.status(200).json(parsedChats);
     } catch (err) {
-        res.status(500).json({ error: err });
+        res.status(400).json({ error: err });
     }
 };
+
+export const getChat = async (req: Request, res: Response) => {
+    try {
+        validateRequest(req);
+
+        const {u1_id, u2_id} = req.query;
+        const parsedIds = [
+            new Types.ObjectId(u1_id as string),
+            new Types.ObjectId(u2_id as string)
+        ];
+
+        const chat = await DatabaseService.instance.getEntityByQuery(
+            {users: {$all: parsedIds}},
+            DB_COLLECTIONS.CHATS
+        )
+
+        res.status(200).json(chat);
+    } catch (err) {
+        res.status(400).json({ error: err });
+    }
+}

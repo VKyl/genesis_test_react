@@ -2,7 +2,7 @@ import {Server} from "socket.io";
 import {
     chatCreationValidators,
     DB_LINK,
-    getChatsListValidators,
+    getChatsListValidators, getChatValidators,
     messageSendingValidators,
     SocketType
 } from "./constants";
@@ -12,9 +12,8 @@ import {authorize, userAuthResolver} from "./resolvers/user-auth";
 import express from "express";
 import {userMessageHandler} from "./resolvers/user-interaction";
 import {newChatResolver} from "./resolvers/new-chat";
-import {getChats} from "./resolvers/get-chats";
+import {getChat, getChats} from "./resolvers/get-chats";
 
-// const httpServer = createServer(setUserMessageReceiving);
 const app = express()
 const server = app.listen(3000)
 
@@ -31,6 +30,11 @@ io.on("connection", (socket: SocketType) => {
 });
 
 app.use(express.json())
+
+app.get("/chat",
+    ...getChatValidators,
+    getChat
+)
 
 app.get("/chats",
     ...getChatsListValidators,

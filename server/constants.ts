@@ -19,6 +19,13 @@ export const getChatsListValidators = [
         .isHexadecimal().isLength({min: 24, max: 24})
 ]
 
+export const getChatValidators = [
+    query("u1_id").exists({values: "falsy"})
+        .isHexadecimal().isLength({min: 24, max: 24}),
+    query("u2_id").exists({values: "falsy"})
+        .isHexadecimal().isLength({min: 24, max: 24}),
+]
+
 export const chatCreationValidators = [
     body("u1_id").exists({values: "falsy"})
         .isHexadecimal().isLength({min: 24, max: 24}),
