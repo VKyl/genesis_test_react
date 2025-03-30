@@ -1,3 +1,5 @@
+import {Types} from "mongoose";
+
 export interface MessageResponseDto {
     sender_id: string,
     message: string,
@@ -5,7 +7,7 @@ export interface MessageResponseDto {
 }
 
 export interface MessageDAO {
-    sender_id: string,
+    sender_id: Types.ObjectId,
     message: string,
     timestamp: string,
 }
