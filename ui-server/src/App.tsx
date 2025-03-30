@@ -1,14 +1,21 @@
-import { useState } from 'react'
 import './App.css'
+import React from "react";
+import Layout from "@layout/Layout";
+
+interface UserSession {
+    name: string,
+    u_id: string
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+    let user: UserSession = {} as UserSession;
+    const UserContext = React.createContext(user);
 
-  return (
-    <>
-      <h1>Finally setted up</h1>
-    </>
-  )
+    return (
+        <UserContext.Provider value={user}>
+            <Layout/>
+        </UserContext.Provider>
+    )
 }
 
 export default App

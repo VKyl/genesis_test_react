@@ -29,6 +29,7 @@ io.on("connection", (socket: SocketType) => {
         .then(u_id => {
             authorize(socket, u_id)
             if (!socket.handshake.query.is_bot)
+                // TODO MOVE to creation of user + add u_id validation
                 createAllChats(socket.data.u_id);
         })
 
