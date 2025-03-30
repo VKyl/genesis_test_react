@@ -1,3 +1,8 @@
-.row{
-    display: flex;
+.main-layout{
+    display: grid;
+    height: 100%;
+    grid-template-columns: 70% auto;
+    > *{
+        outline: 1px solid red;
+    }
 }
