@@ -1,7 +1,7 @@
-import {DatabaseService} from "../services/database-service";
-import {DB_COLLECTIONS} from "../services/constants";
+import {DatabaseService} from "../../services/database-service";
+import {DB_COLLECTIONS} from "../../services/constants";
 import {Types} from "mongoose";
-import {parseUserDocument} from "../entities/user";
+import {parseUserDocument} from "../../entities/user";
 
 export const getUserInfoById = async (u_id: string) =>
     DatabaseService.instance.getEntityById(u_id, DB_COLLECTIONS.USERS)

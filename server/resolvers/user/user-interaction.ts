@@ -1,9 +1,9 @@
-import {MessageDAO} from "../entities/message";
-import {SessionService} from "../services/session-service";
-import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../services/constants";
-import {DatabaseService} from "../services/database-service";
+import {MessageDAO} from "../../entities/message";
+import {SessionService} from "../../services/session-service";
+import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../../services/constants";
+import {DatabaseService} from "../../services/database-service";
 import {Request, Response} from "express";
-import {validateRequest} from "../constants";
+import {validateRequest} from "../../constants";
 import {Types} from "mongoose";
 
 const updateChat = async (message: MessageDAO, receiverId: string) => {

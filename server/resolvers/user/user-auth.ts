@@ -1,8 +1,8 @@
-import {DatabaseService} from "../services/database-service";
-import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../services/constants";
+import {DatabaseService} from "../../services/database-service";
+import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../../services/constants";
 import {ParsedUrlQuery} from "node:querystring";
-import {IMAGES, SocketType} from "../constants";
-import {SessionService} from "../services/session-service";
+import {IMAGES, SocketType} from "../../constants";
+import {SessionService} from "../../services/session-service";
 
 const genericAvatar = () => IMAGES[Math.floor(Math.random() * IMAGES.length)];
 

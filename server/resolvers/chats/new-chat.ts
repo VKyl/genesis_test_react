@@ -1,8 +1,8 @@
-import {DatabaseService} from "../services/database-service";
-import {DB_COLLECTIONS} from "../services/constants";
+import {DatabaseService} from "../../services/database-service";
+import {DB_COLLECTIONS} from "../../services/constants";
 import {Types} from "mongoose";
 import {Response, Request} from "express";
-import {validateRequest} from "../constants";
+import {validateRequest} from "../../constants";
 
 const isExistingChat = async (chatUsers: Types.ObjectId[]) =>
     DatabaseService.instance.getEntityByQuery({users: {

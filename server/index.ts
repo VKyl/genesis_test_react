@@ -8,11 +8,11 @@ import {
 } from "./constants";
 import {DatabaseService} from "./services/database-service";
 import {SessionService} from "./services/session-service";
-import {authorize, userAuthResolver} from "./resolvers/user-auth";
+import {authorize, userAuthResolver} from "./resolvers/user/user-auth";
 import express from "express";
-import {userMessageHandler} from "./resolvers/user-interaction";
-import {newChatResolver} from "./resolvers/new-chat";
-import {getChat, getChats} from "./resolvers/get-chats";
+import {userMessageHandler} from "./resolvers/user/user-interaction";
+import {newChatResolver} from "./resolvers/chats/new-chat";
+import {getChat, getChats} from "./resolvers/chats/get-chats";
 
 const app = express()
 const server = app.listen(3000)
