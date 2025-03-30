@@ -1,5 +1,6 @@
 import {MessageResponseDto, MessageViewDto} from "./message";
 import {now} from "mongoose";
+import {Socket} from "socket.io";
 
 export interface UserResponseDTO {
     _id: string;
@@ -27,10 +28,12 @@ export type botMessageBuilder = (message: string) => string;
 export class Bot{
     id: string = "";
     name: string;
+    handlers: any;
     private readonly builder: botMessageBuilder;
-    constructor(name: string, builder: botMessageBuilder) {
+    constructor(name: string, builder: botMessageBuilder, handlers: any) {
         this.name = name;
         this.builder = builder;
+        this.handlers = handlers;
     }
 
     handler(message: MessageResponseDto): MessageViewDto {
@@ -40,5 +43,9 @@ export class Bot{
             message: this.builder(message.message),
             receiver_id: message.sender_id
         }
+    }
+
+    setUpHandlers(socket: Socket){
+        this.handlers(socket);
     }
 }
