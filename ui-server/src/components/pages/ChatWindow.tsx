@@ -6,50 +6,26 @@ const ChatWindow = () => {
     return <div className="chat">
         <div className="chat-window">
             <div className="message user-message">
-                Hello world!
+                <div className="header">
+                    <span>User name</span> <span className="date">14:20</span>
+                </div>
+                <div className="content">
+                    Hello world!
+                </div>
             </div>
+
             <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
-            </div>
-            <div className="message">
-                Hello world!
+                <div className="header">
+                    <span>User name</span> <span className="date">14:20</span>
+                </div>
+                <div className="content">
+                    Hello world!
+                </div>
             </div>
         </div>
         <div className="input-section">
             <input placeholder="Start chatting"/>
+            <button type="submit">Send message</button>
         </div>
     </div>
 }
