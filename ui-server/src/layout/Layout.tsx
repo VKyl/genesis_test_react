@@ -1,7 +1,7 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import WelcomePage from "@pages/WelcomePage";
-import ChatWindow from "@pages/ChatWindow";
-import ChatsSidebar from "./ChatsSidebar";
+import ChatWindow from "@pages/Chat";
+import ChatsSidebar from "./ChatsSidebar.tsx";
 import React from "react";
 import '@styles/Layout.css'
 const Layout = () => {

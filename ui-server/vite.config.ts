@@ -10,8 +10,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@pages': path.resolve(__dirname, 'src/components/pages'),
-      '@layout': path.resolve(__dirname, 'src/components/layout')
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@layout': path.resolve(__dirname, 'src/layout')
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   }

@@ -6,8 +6,8 @@
       "@/*": ["src/*"],
       "@styles/*": ["src/styles/*"],
       "@components/*": ["src/components/*"],
-      "@pages/*": ["src/components/pages/*"],
-      "@layout/*": ["src/components/layout/*"]
+      "@pages/*": ["src/pages/*"],
+      "@layout/*": ["src/layout/*"]
     },
     "moduleResolution": "node",
     "resolveJsonModule": true,
