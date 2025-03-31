@@ -46,7 +46,7 @@ export const messageSendingValidators = [
         .isHexadecimal().isLength({min: 24, max: 24})
 ]
 
-export const botRequestOptions = {
+export const messageRequestOptions = {
         port: process.env.SERVER_PORT,
         path: "/message",
         method: "POST",

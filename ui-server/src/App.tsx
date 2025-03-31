@@ -1,28 +1,28 @@
-import './styles/App.css'
-import React, {useContext} from "react";
 import Layout from "@layout/Layout";
 import {BrowserRouter} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {User} from "./utils/constants.ts";
+import '@styles/App.css';
+import {io} from "socket.io-client";
+import {Authorize} from "./utils/auth.ts";
+import {AuthProvider} from "./components/AuthContextProvider.tsx";
 
-interface UserSession {
-    name: string,
-    u_id: string
-}
-
-const testUserSession: UserSession = {
-    name: "test",
-    u_id: "test",
-}
-
-export const UserContext = React.createContext(testUserSession as UserSession);
+const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
+export const socket = io(`http://localhost:${SERVER_PORT}`, {autoConnect: false})
 
 function App() {
-    const user = useContext(UserContext);
+    const [user, setUser] = useState<User | null>()
+    useEffect(() => {
+        if(!user?.u_id)
+            Authorize(setUser)
+        console.log(user)
+    }, [user]);
     return (
-        <UserContext.Provider value={user}>
+        <AuthProvider user={user}>
             <BrowserRouter>
                 <Layout/>
             </BrowserRouter>
-        </UserContext.Provider>
+        </AuthProvider>
     )
 }
 

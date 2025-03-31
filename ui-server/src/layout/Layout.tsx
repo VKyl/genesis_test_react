@@ -2,19 +2,30 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import WelcomePage from "@pages/WelcomePage";
 import ChatWindow from "@pages/Chat";
 import ChatsSidebar from "./ChatsSidebar.tsx";
-import React from "react";
+import React, {useContext} from "react";
 import '@styles/Layout.css'
+import {AuthContext} from "../components/AuthContextProvider.tsx";
+
+const LoggedLayout = () => <div className="main-layout">
+    <main>
+        <Routes>
+            <Route path="/chats" Component={WelcomePage}/>
+            <Route path="/chats/:id" Component={ChatWindow}/>
+            <Route path="*" element={<Navigate to="/chats" replace/>}/>
+        </Routes>
+    </main>
+    <ChatsSidebar/>
+</div>
+
+const UnSignedLayout = () => <Routes>
+                                <Route path="*" element={<Navigate to="/" replace/>}/>
+                                <Route path="/" element={
+                                    <h1 className="unsigned-layout">Wait until logged in...</h1>}/>
+                            </Routes>
+
 const Layout = () => {
-    return <div className="main-layout">
-                <main>
-                    <Routes>
-                        <Route path="/chats" Component={WelcomePage}/>
-                        <Route path="/chats/:id" Component={ChatWindow}/>
-                        <Route path="*" element={<Navigate to="/chats" replace/>}/>
-                    </Routes>
-                </main>
-                <ChatsSidebar/>
-            </div>
+    const userContext = useContext(AuthContext);
+    return userContext?.u_id ? <LoggedLayout/> : <UnSignedLayout/>
 }
 
 export default Layout

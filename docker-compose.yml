@@ -32,8 +32,9 @@ services:
   ui-server:
     env_file:
       - .env
-#    depends_on:
-#      - server
+    depends_on:
+      - mongodb
+      - server
     build:
       context: ./ui-server
     image: genesis-frontend

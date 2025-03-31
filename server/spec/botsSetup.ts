@@ -3,7 +3,7 @@ import {io} from "socket.io-client";
 import {NOTIFICATION_TYPE} from "../services/constants";
 import {MessageResponseDto} from "../entities/message";
 import http from "http";
-import {botRequestOptions} from "../constants";
+import {messageRequestOptions} from "../constants";
 import {Socket} from "socket.io";
 
 const reverseString = (str: string): string => {
@@ -14,7 +14,7 @@ const reverseString = (str: string): string => {
 
 const defaultBotHandlers = (socket: Socket, bot: Bot) => {
     socket.on(NOTIFICATION_TYPE.MESSAGE, (message: MessageResponseDto) => {
-            const req = http.request(botRequestOptions)
+            const req = http.request(messageRequestOptions)
             req.write(JSON.stringify(bot.handler(message)))
             req.on("error", () => {})
             req.end()

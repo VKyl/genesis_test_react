@@ -3,7 +3,9 @@ import ChatCard from "@components/ChatCard.tsx";
 import SearchFilter from "@components/SearchFilter.tsx";
 import React, {memo} from "react";
 import {useSelect} from "@hooks/useSelect.ts";
-const cards: number[] = [1] as number[]
+
+const cards: number[] = [1] as number[];
+
 const ChatsSidebar = () => {
     const {parentRef: tabsRef, handleListSelect: tabsListSelect} = useSelect();
     return <aside>

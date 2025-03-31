@@ -3,3 +3,9 @@
     height: 100%;
     grid-template-columns: 70% auto;
 }
+
+.unsigned-layout{
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
