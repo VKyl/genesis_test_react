@@ -16,10 +16,13 @@ const updateChat = async (message: MessageDAO, receiverId: string) => {
 
 export const userMessageHandler = async (req: Request, res: Response) => {
     try {
-        // TODO VALIDATE TWO DIFFERENT USER ID's
         validateRequest(req);
-
         const { sender_id, receiver_id, message, timestamp } = req.body;
+        if (receiver_id === sender_id) {
+            res.status(400).send({error: "User can't be both sender and the receiver"});
+            return
+        }
+
         const messageData: MessageDAO = {
             sender_id: new Types.ObjectId(sender_id as string),
             message,
