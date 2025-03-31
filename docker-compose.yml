@@ -39,6 +39,8 @@ services:
     image: genesis-frontend
     ports:
       - "${UI_PORT}:5173"
+    networks:
+      - app-network
 
 networks:
   app-network:

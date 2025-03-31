@@ -1,8 +1,13 @@
-li img{
+.chat-card{
+    display: flex;
+    justify-content: center;
+}
+
+.chat-card img{
     width: 70px;
     position: relative;
 }
-li .info{
+.chat-card .info{
     padding: 5px;
     .last-message{
         color: var(--primary-color);

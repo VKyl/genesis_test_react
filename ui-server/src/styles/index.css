@@ -8,10 +8,6 @@
   box-sizing: border-box;
 }
 
-ul{
-    list-style: none;
-}
-
 :root {
     --primary-bg-color: #f8f8f8;
     --primary-color: #becbd9;
@@ -27,6 +23,16 @@ ul{
     --message-box-radius: 5px;
 
     --input-section-accent: #428bca;
+    --input-section-hover: #3677b3;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
 }
 
 #root{

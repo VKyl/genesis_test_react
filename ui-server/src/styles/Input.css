@@ -30,4 +30,10 @@
     padding: var(--padding);
     text-wrap: nowrap;
     border-radius: var(--message-box-radius);
+    transition: .3s all ease-in-out;
+    cursor: pointer;
+}
+
+.input-section button:hover{
+    background-color: var(--input-section-hover);
 }
