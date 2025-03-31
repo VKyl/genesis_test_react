@@ -14,13 +14,12 @@ import {userMessageHandler} from "./resolvers/user/user-interaction";
 import {newChatResolver} from "./resolvers/chats/new-chat";
 import {getChat, getChats} from "./resolvers/chats/get-chats";
 import {setupBots} from "./spec/botsSetup";
-import {createAllChats} from "./spec/createAllChats";
 
 const app = express()
 const server = app.listen(3000)
 
 const io = new Server(server, {cors: {origin: "*"}});
-DatabaseService.instance.connect(DB_LINK).then(r =>
+DatabaseService.instance.connect(DB_LINK).then(() =>
     setupBots()
 );
 

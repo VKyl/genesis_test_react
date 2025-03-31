@@ -1,7 +1,7 @@
 import {DatabaseService} from "../../services/database-service";
 import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../../services/constants";
 import {ParsedUrlQuery} from "node:querystring";
-import {genericAvatar, IMAGES, SocketType} from "../../constants";
+import {genericAvatar, SocketType} from "../../constants";
 import {SessionService} from "../../services/session-service";
 import {createAllChats} from "../../spec/createAllChats";
 
@@ -18,7 +18,6 @@ const createUser = async (user: ParsedUrlQuery) => {
                 createAllChats(res.insertedId.toHexString());
             return res?.insertedId
         })
-        .catch(() => null)
     }
     catch(err){
         console.log(err)
