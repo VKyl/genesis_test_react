@@ -25,12 +25,13 @@ const connect = () => {
 
 const authQueryResolver = (): string =>{
     const user: User = fetchLocalStorage(USER_STORAGE_KEY);
-    let name = user?.name;
-    if (!!user?.u_id && !!name) {
+
+    if (user?.u_id && user?.name) {
         socket.io.opts.query = {id: user?.u_id}
-        return name;
+        return user.name;
     }
-    name = genericName()
+
+    const name= genericName()
     socket.io.opts.query = {name: name};
     return name;
 }
