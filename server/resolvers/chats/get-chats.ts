@@ -5,6 +5,17 @@ import {DB_COLLECTIONS} from "../../services/constants";
 import {validateRequest} from "../../constants";
 import {ChatResponseDTO} from "../../entities/chat";
 import {getUsersByIds} from "../user/user-data";
+import {UserResponseDTO} from "../../entities/user";
+import {SessionService} from "../../services/session-service";
+
+const getChatResponse = (chat: any, receiver: UserResponseDTO) => {
+    return {
+        _id: chat._id.toHexString(),
+        users: [receiver],
+        lastMessage: chat.messages[chat.messages.length - 1] || "No messages found",
+        is_online: SessionService.instance.isLoggedInSession(receiver._id.toString())
+    }
+}
 
 export const getChats = async (req: Request, res: Response) => {
     try {
@@ -16,12 +27,15 @@ export const getChats = async (req: Request, res: Response) => {
             { users: { $elemMatch: {$eq: userId} } },
             DB_COLLECTIONS.CHATS
         ) || [];
+
         const parsedChats: ChatResponseDTO[] = await Promise.all(
-            chats.map(async (chat) => ({
-                users: await getUsersByIds(chat.users, userId),
-                lastMessage: chat.messages[chat.messages.length - 1] || "No messages found",
-            } as ChatResponseDTO)),
+            chats.map(async (chat) => {
+                const receiver = (await getUsersByIds(chat.users, userId))[0]
+                return getChatResponse(chat, receiver)
+            }),
         );
+
+
         res.status(200).json(parsedChats);
     } catch (err) {
         res.status(400).json({ error: err });

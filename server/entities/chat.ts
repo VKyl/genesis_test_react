@@ -6,6 +6,7 @@ export interface ChatResponseDTO {
   _id: string;
   users: UserResponseDTO[];
   lastMessage: MessageResponseDto;
+  is_online: boolean;
 }
 
 export interface ChatViewDTO extends mongoose.Document {

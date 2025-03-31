@@ -6,9 +6,9 @@ import {parseUserDocument} from "../../entities/user";
 export const getUserInfoById = async (u_id: string) =>
     DatabaseService.instance.getEntityById(u_id, DB_COLLECTIONS.USERS)
 
-export const getUsersByIds = async (users: Types.ObjectId[], u_id?: Types.ObjectId) => {
+export const getUsersByIds = async (users: Types.ObjectId[], filter_u_id?: Types.ObjectId) => {
     return Promise.all(
-        users.filter(user_id => !user_id.equals(u_id))
+        users.filter(user_id => !user_id.equals(filter_u_id))
             .map(async (user_id) =>
                 parseUserDocument(await getUserInfoById(user_id.toString()))
             )
