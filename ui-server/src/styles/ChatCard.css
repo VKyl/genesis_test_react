@@ -1,0 +1,41 @@
+li img{
+    width: 70px;
+    position: relative;
+}
+li .info{
+    padding: 5px;
+    .last-message{
+        color: var(--primary-color);
+        font-size: small;
+    }
+}
+
+.avatar-wrapper{
+    position: relative;
+}
+.avatar-wrapper::before{
+    content: "";
+    background: #8b8f8f;
+    width: 15px;
+    height: 15px;
+    bottom: 0;
+    right: 0;
+    transform: translateX(25%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+}
+.avatar-wrapper.online::before{
+    background: #20d63e;
+}
+
+.search-input{
+    padding: 15px var(--padding);
+    input{
+        width: 100%;
+        box-shadow: 0 0 3px inset rgba(0, 0, 0, 0.28);
+        padding: var(--padding);
+        border-radius: 5px;
+        border: none;
+    }
+}

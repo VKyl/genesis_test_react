@@ -7,7 +7,7 @@ export type SessionUser = {
     is_bot: boolean
 }
 
-export const IMAGES = ['avatar1.png', 'avatar2.png', 'avatar3.png']
+export const IMAGES = ['avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png'];
 export const genericAvatar = () => IMAGES[Math.floor(Math.random() * IMAGES.length)];
 
 export type SocketType = Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, SessionUser>

@@ -1,6 +1,6 @@
+import "@styles/Input.css"
 
-
-const Input = () => {
+const MessageInput = () => {
     return(
         <div className="input-section">
             <input placeholder="Start chatting"/>
@@ -9,4 +9,4 @@ const Input = () => {
     )
 }
 
-export default Input
+export default MessageInput

@@ -8,6 +8,27 @@
   box-sizing: border-box;
 }
 
+ul{
+    list-style: none;
+}
+
+:root {
+    --primary-bg-color: #f8f8f8;
+    --primary-color: #becbd9;
+    --accent-color: #203245;
+    --header-date-color: #9aa8b7;
+
+    --user-header-bg-color: #f0cbb3;
+    --user-header-text-color: #703a18;
+    --user-header-date-color: #bba08e;
+
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --padding: 10px;
+    --message-box-radius: 5px;
+
+    --input-section-accent: #428bca;
+}
+
 #root{
   height: 100vh;
 }
