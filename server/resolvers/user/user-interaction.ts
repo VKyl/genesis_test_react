@@ -16,6 +16,7 @@ const updateChat = async (message: MessageDAO, receiverId: string) => {
 
 export const userMessageHandler = async (req: Request, res: Response) => {
     try {
+        // TODO VALIDATE TWO DIFFERENT USER ID's
         validateRequest(req);
 
         const { sender_id, receiver_id, message, timestamp } = req.body;

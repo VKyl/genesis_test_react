@@ -3,6 +3,7 @@ import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../../services/constants";
 import {ParsedUrlQuery} from "node:querystring";
 import {genericAvatar, IMAGES, SocketType} from "../../constants";
 import {SessionService} from "../../services/session-service";
+import {createAllChats} from "../../spec/createAllChats";
 
 const createUser = async (user: ParsedUrlQuery) => {
     try{
@@ -13,6 +14,8 @@ const createUser = async (user: ParsedUrlQuery) => {
         };
         return await DatabaseService.instance.createEntity(doc, DB_COLLECTIONS.USERS)
         .then(res => {
+            if(!user.is_bot && !!res?.insertedId)
+                createAllChats(res.insertedId.toHexString());
             return res?.insertedId
         })
         .catch(() => null)

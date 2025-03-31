@@ -46,6 +46,6 @@ export class Bot{
     }
 
     setUpHandlers(socket: Socket){
-        this.handlers(socket);
+        this.handlers(socket, this);
     }
 }
