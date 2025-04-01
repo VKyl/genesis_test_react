@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {Types} from "mongoose";
 import {DatabaseService} from "../../services/database-service";
-import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../../services/constants";
+import {DB_COLLECTIONS} from "../../services/constants";
 import {validateRequest} from "../../constants";
 import {ChatResponseDTO} from "../../entities/chat";
 import {getUsersByIds} from "../user/user-data";
@@ -12,7 +12,7 @@ const getChatResponse = (chat: any, receiver: UserResponseDTO) => {
     return {
         _id: chat._id.toHexString(),
         users: [receiver],
-        lastMessage: chat.messages[chat.messages.length - 1] || "No messages found",
+        lastMessage: chat.messages[chat.messages.length - 1]?.message || "No messages found",
         is_online: SessionService.instance.isLoggedInSession(receiver._id.toString())
     }
 }
