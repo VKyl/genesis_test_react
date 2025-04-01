@@ -1,12 +1,23 @@
 import "@styles/Input.css"
+import {useRef} from "react";
 
-const MessageInput = () => {
+type MessageInputProps = {
+    receiverId: string
+}
+
+
+const MessageInput = ({receiverId}: MessageInputProps) => {
+    const inputRef = useRef<HTMLInputElement>(null)
     return(
         <div className="input-section">
-            <input placeholder="Start chatting"/>
-            <button type="submit">Send message</button>
+            <input ref={inputRef} placeholder="Start chatting"/>
+            <button onClick={() => handleSending()} type="submit">Send message</button>
         </div>
     )
+}
+
+const handleSending = () => {
+
 }
 
 export default MessageInput

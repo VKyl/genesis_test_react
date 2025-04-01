@@ -28,18 +28,18 @@ export interface MessageResponseDTO{
     timestamp: string,
 }
 
-export const chatsQuery = async (user: User): Promise<ChatListItemResponseDTO[]> => {
-        const response = await fetch(BASE_URL + `/chats?u_id=${user?.u_id}`);
-        return await response.json();
-}
-
 export interface ChatListItemResponseDTO {
     users: UserResponseDTO,
     lastMessage: string,
     is_online: boolean,
 }
 
-const chatQuery = async (u1_id: string, u2_id: string): Promise<ChatResponseDTO> => {
+export const chatsQuery = async (user: User): Promise<ChatListItemResponseDTO[]> => {
+        const response = await fetch(BASE_URL + `/chats?u_id=${user?.u_id}`);
+        return await response.json();
+}
+
+export const chatInfoQuery = async (u1_id: string, u2_id: string): Promise<ChatResponseDTO> => {
     const response = await fetch(BASE_URL + `/chat?u1_id=${u1_id}&u2_id=${u2_id}`);
     return await response.json();
 }

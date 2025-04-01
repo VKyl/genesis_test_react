@@ -35,6 +35,10 @@ export const userMessageHandler = async (req: Request, res: Response) => {
             { type: NOTIFICATION_TYPE.MESSAGE, payload: messageData },
             receiver_id
         );
+        SessionService.instance.notify(
+            { type: NOTIFICATION_TYPE.MESSAGE, payload: messageData },
+            sender_id
+        );
 
         res.status(200).send();
     } catch (error) {

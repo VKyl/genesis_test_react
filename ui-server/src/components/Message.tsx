@@ -1,15 +1,17 @@
 import "../styles/Message.css"
+import {useContext} from "react";
+import {AuthContext} from "./AuthContextProvider.tsx";
 
 export interface MessageProps {
     sender_name: string,
     message: string,
     timestamp: string,
-    is_current_user?: boolean,
 }
 
-const Message = ({is_current_user = false, ...props}: MessageProps) => {
+const Message = ({...props}: MessageProps) => {
+    const user = useContext(AuthContext);
     return (
-        <div className={"message" + (is_current_user ? " user-message" : "")}>
+        <div className={"message" + (props.sender_name === user?.name ? " user-message" : "")}>
             <div className="header">
                 <span>{props.sender_name}</span> <span className="date">{props.timestamp}</span>
             </div>
@@ -19,5 +21,6 @@ const Message = ({is_current_user = false, ...props}: MessageProps) => {
         </div>
     )
 }
+
 
 export default Message;

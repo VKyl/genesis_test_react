@@ -1,33 +1,31 @@
 import '@styles/Chat.css'
 import Message, {MessageProps} from "../components/Message.tsx";
 import MessageInput from "../components/MessageInput.tsx";
-import {memo} from "react";
+import {memo, useContext} from "react";
 import {useVirtualizerBottomScroll} from "../hooks/useVirtualizerBottomScroll.ts";
-import {useLocation} from "react-router-dom";
-
- const messages: MessageProps[] = [{sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: false},
-                                      {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: true},
-                                      {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: false},
-                                      {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: true},
-                                      {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: false},
-                                      {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: true},
-                                      {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: false},
-                                      {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: true}]
+import {Location, useLocation} from "react-router-dom";
+import {useChatInfo} from "../hooks/useChatInfo.ts";
+import {ChatCardType, ChatResponseDTO, MessageResponseDTO} from "../api/chats.ts";
+import {AuthContext} from "../components/AuthContextProvider.tsx";
+import {User} from "../utils/constants.ts";
 
 
 const Chat = () => {
-    const location = useLocation();
-    const user = location.state || {};
+    const user = useContext(AuthContext);
+    const location: Location<ChatCardType> = useLocation();
+    const {data} = useChatInfo(location.state?._id)
     const {virtualItems,
         virtualizer,
-        bottomRef} = useVirtualizerBottomScroll(messages)
+        bottomRef} = useVirtualizerBottomScroll(data as ChatResponseDTO)
+
+    if (!data) return <div>Loading...</div>;
 
     return (
         <div className="chat">
             <div className="chat-header">
-                <img src="/avatar1.png" alt="avatar"/>
+                <img src={"/" + location.state.image} alt="avatar"/>
                 <div className="chatter-info">
-                    <h3>Placeholder name</h3>
+                    <h3>{location.state.name}</h3>
                 </div>
             </div>
             <div className="chat-window">
@@ -35,15 +33,22 @@ const Chat = () => {
                         <div key={key} data-index={index}
                             className={"message-wrapper"}
                              ref={virtualizer.measureElement}>
-                            <Message  {...messages[index]}/>
+                            <Message  {...getMessageProps(user as User, location, data.messages[index])}/>
                         </div>
                     )
                 )}
                 <div ref={bottomRef}></div>
             </div>
-            <MessageInput/>
+            <MessageInput receiverId={location.state._id}/>
         </div>
     )
+}
+
+const getMessageProps = (user: User,location: Location<ChatCardType>, message: MessageResponseDTO): MessageProps =>{
+    return {
+        sender_name: (message.sender_id === user?.u_id ? user.name : location.state.name) as string,
+        ...message
+    }
 }
 
 export default memo(Chat);
