@@ -2,7 +2,7 @@ import "@styles/ChatCard.css"
 import {useNavigate} from "react-router-dom";
 import {ChatCardType} from "../api/chats.ts";
 
-const ChatCard = ({index, ...chat}: {index: number} & ChatCardType) => {
+const ChatCard = ({...chat}: ChatCardType) => {
     const navigate = useNavigate();
     const navigateToChat = () => {
         navigate(`/chats/${chat._id}`, {state: {...chat}})

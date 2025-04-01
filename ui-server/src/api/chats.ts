@@ -1,7 +1,7 @@
 import {BASE_URL, User} from "../utils/constants.ts";
 
 export interface UserResponseDTO {
-    id: string,
+    _id: string,
     name: string
     image: string
 }
@@ -29,7 +29,7 @@ export interface MessageResponseDTO{
 }
 
 export interface ChatListItemResponseDTO {
-    users: UserResponseDTO,
+    users: UserResponseDTO[],
     lastMessage: string,
     is_online: boolean,
 }

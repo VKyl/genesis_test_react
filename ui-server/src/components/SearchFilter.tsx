@@ -1,8 +1,10 @@
+import {ChangeEvent, Dispatch} from "react";
 
 
-const SearchFilter = () => {
+const SearchFilter = ({filter, setFilter}: {filter: string, setFilter: Dispatch<any> }) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => setFilter(e.target.value);
     return <div className="search-input">
-        <input placeholder="Search..."/>
+        <input onChange={(e) => handleChange(e)} value={filter} placeholder="Search..."/>
     </div>
 }
 
