@@ -1,11 +1,10 @@
 import '@styles/Chat.css'
 import Message, {MessageProps} from "../components/Message.tsx";
 import MessageInput from "../components/MessageInput.tsx";
-import {memo, useContext} from "react";
-import {useVirtualizerBottomScroll} from "../hooks/useVirtualizerBottomScroll.ts";
+import {memo, useContext, useRef} from "react";
 import {Location, useLocation} from "react-router-dom";
 import {useChatInfo} from "../hooks/useChatInfo.ts";
-import {ChatCardType, ChatResponseDTO, MessageResponseDTO} from "../api/chats.ts";
+import {ChatCardType, MessageResponseDTO} from "../api/chats.ts";
 import {AuthContext} from "../components/AuthContextProvider.tsx";
 import {User} from "../utils/constants.ts";
 
@@ -14,7 +13,8 @@ const Chat = () => {
     const user = useContext(AuthContext);
     const location: Location<ChatCardType> = useLocation();
     const {data} = useChatInfo(location.state?._id)
-    const { bottomRef} = useVirtualizerBottomScroll(data as ChatResponseDTO)
+    const bottomRef = useRef<HTMLDivElement>(null);
+    // const { bottomRef} = useVirtualizerBottomScroll(data as ChatResponseDTO)
 
     if (!data) return <div>Loading...</div>;
 
@@ -27,14 +27,6 @@ const Chat = () => {
                 </div>
             </div>
             <div className="chat-window">
-                {/*{virtualItems.map(({index, key}) => (*/}
-                {/*        <div key={key} data-index={index}*/}
-                {/*            className={"message-wrapper"}*/}
-                {/*             ref={virtualizer.measureElement}>*/}
-                {/*            <Message  {...getMessageProps(user as User, location, data.messages[index])}/>*/}
-                {/*        </div>*/}
-                {/*    )*/}
-                {/*)}*/}
                 {data.messages.map((message, index) => (
                     <Message key={index}  {...getMessageProps(user as User, location, message)}/>
                 ))}
