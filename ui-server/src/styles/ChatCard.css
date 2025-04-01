@@ -1,7 +1,9 @@
 .chat-card{
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
+
 
 .chat-card img{
     width: 70px;

@@ -1,9 +1,14 @@
 import "@styles/ChatCard.css"
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {ChatCardType} from "../api/chats.ts";
 
-const ChatCard = ({...chat}: ChatCardType) => {
-    return (<Link to={`/chats/${chat.id}`} className={"chat-card"}>
+const ChatCard = ({index, ...chat}: {index: number} & ChatCardType) => {
+    const navigate = useNavigate();
+    const navigateToChat = () => {
+        navigate(`/chats/${chat._id}`, {state: {...chat}})
+    }
+
+    return (<div onClick={() => navigateToChat()} className={"chat-card"}>
             <div className={"avatar-wrapper" + (chat.is_online ? " online" : "")}>
                 <img src={"/"+chat.image} alt="avatar"/>
             </div>
@@ -11,7 +16,7 @@ const ChatCard = ({...chat}: ChatCardType) => {
                 <p><strong>{chat.name}</strong></p>
                 <p className="last-message">{chat.lastMessage.slice(0, 35) + "..."}</p>
             </div>
-        </Link>)
+        </div>)
 }
 
 export default ChatCard;

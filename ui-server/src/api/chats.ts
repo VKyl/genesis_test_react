@@ -9,7 +9,7 @@ export interface UserResponseDTO {
 export const chatsQuery = async (user: User) => {
         const response = await fetch(BASE_URL + `/chats?u_id=${user?.u_id}`);
         return await response.json();
-    }
+}
 
 export interface ChatResponseDTO {
     users: UserResponseDTO,
@@ -19,7 +19,7 @@ export interface ChatResponseDTO {
 
 export type ChatCardType = {
         name: string;
-        id: string;
+        _id: string;
         image: string;
         lastMessage: string;
         is_online: boolean;

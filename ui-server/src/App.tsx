@@ -17,7 +17,6 @@ function App() {
     useEffect(() => {
         if(!user?.u_id)
             Authorize(setUser)
-        console.log(user)
     }, [user]);
 
     return (

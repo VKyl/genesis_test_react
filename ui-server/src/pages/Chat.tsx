@@ -1,9 +1,9 @@
-import {useParams} from "react-router-dom";
 import '@styles/Chat.css'
-import {useWindowVirtualizer} from "@tanstack/react-virtual";
 import Message, {MessageProps} from "../components/Message.tsx";
 import MessageInput from "../components/MessageInput.tsx";
-import {memo, useEffect, useRef} from "react";
+import {memo} from "react";
+import {useVirtualizerBottomScroll} from "../hooks/useVirtualizerBottomScroll.ts";
+import {useLocation} from "react-router-dom";
 
  const messages: MessageProps[] = [{sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: false},
                                       {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: true},
@@ -16,19 +16,12 @@ import {memo, useEffect, useRef} from "react";
 
 
 const Chat = () => {
-    const params = useParams();
-    const bottomRef = useRef<HTMLDivElement>(null);
-    const virtualizer = useWindowVirtualizer({
-        count: messages.length,
-        estimateSize: () => 100,
+    const location = useLocation();
+    const user = location.state || {};
+    const {virtualItems,
+        virtualizer,
+        bottomRef} = useVirtualizerBottomScroll(messages)
 
-    })
-    const virtualItems = virtualizer.getVirtualItems()
-    useEffect(() => {
-            requestAnimationFrame(() => {
-                bottomRef.current?.scrollIntoView();
-            });
-    }, [virtualizer.getVirtualItems()])
     return (
         <div className="chat">
             <div className="chat-header">
