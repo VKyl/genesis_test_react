@@ -19,8 +19,8 @@ export const useChatInfo = (u2_id: string) => {
     });
 
     useEffect(() => {
-        socket.on(NOTIFICATION_TYPE.MESSAGE,(message: MessageResponseDTO) => {
-            if([u2_id, user.u_id].includes(message.sender_id)) refetch()
+        socket.on(NOTIFICATION_TYPE.MESSAGE,async (message: MessageResponseDTO) => {
+            if([u2_id, user.u_id].includes(message.sender_id)) await refetch()
         })
     }, [])
     return {data, error, isLoading}

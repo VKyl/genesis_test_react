@@ -8,6 +8,9 @@ aside{
 
 aside .tabs{
     display: flex;
+    @media (max-width: 500px){
+        flex-direction: column;
+    }
     li {
         display: flex;
         width: 100%;
