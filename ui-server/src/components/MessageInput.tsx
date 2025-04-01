@@ -1,5 +1,5 @@
 import "@styles/Input.css";
-import {useContext, useRef} from "react";
+import {useContext, useEffect, useRef} from "react";
 import { AuthContext } from "./AuthContextProvider.tsx";
 import { useMutation } from "@tanstack/react-query";
 import { sendMessage } from "../api/messages.ts";
@@ -14,6 +14,12 @@ const MessageInput = ({ receiver_id }: MessageInputProps) => {
     const { mutateAsync: sendMessageAction } = useMutation({
         mutationFn: sendMessage,
     });
+
+    useEffect(() => {
+        if(inputRef.current)
+            inputRef.current.value = "";
+    }, [receiver_id]);
+
     const handleSendMessage = async (e: any) => {
         e.preventDefault();
         try {
@@ -26,7 +32,7 @@ const MessageInput = ({ receiver_id }: MessageInputProps) => {
                     inputRef.current.value = "";
             });
         } catch (e) {
-          console.log(e);
+            console.log(e);
         }
     };
 
