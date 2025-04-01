@@ -8,7 +8,7 @@ import {socket} from "../App.tsx";
 export const useChatInfo = (u2_id: string) => {
     const user = useContext(AuthContext) as User;
     const { data, error, isLoading, refetch } = useQuery({
-        queryKey: ["chat"], queryFn: async() =>
+        queryKey: [`chat${u2_id}`], queryFn: async() =>
             chatInfoQuery(user.u_id as string, u2_id),
             refetchOnWindowFocus: false
     });

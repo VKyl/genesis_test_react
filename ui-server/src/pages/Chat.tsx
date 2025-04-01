@@ -14,9 +14,7 @@ const Chat = () => {
     const user = useContext(AuthContext);
     const location: Location<ChatCardType> = useLocation();
     const {data} = useChatInfo(location.state?._id)
-    const {virtualItems,
-        virtualizer,
-        bottomRef} = useVirtualizerBottomScroll(data as ChatResponseDTO)
+    const { bottomRef} = useVirtualizerBottomScroll(data as ChatResponseDTO)
 
     if (!data) return <div>Loading...</div>;
 
@@ -29,17 +27,20 @@ const Chat = () => {
                 </div>
             </div>
             <div className="chat-window">
-                {virtualItems.map(({index, key}) => (
-                        <div key={key} data-index={index}
-                            className={"message-wrapper"}
-                             ref={virtualizer.measureElement}>
-                            <Message  {...getMessageProps(user as User, location, data.messages[index])}/>
-                        </div>
-                    )
-                )}
+                {/*{virtualItems.map(({index, key}) => (*/}
+                {/*        <div key={key} data-index={index}*/}
+                {/*            className={"message-wrapper"}*/}
+                {/*             ref={virtualizer.measureElement}>*/}
+                {/*            <Message  {...getMessageProps(user as User, location, data.messages[index])}/>*/}
+                {/*        </div>*/}
+                {/*    )*/}
+                {/*)}*/}
+                {data.messages.map((message, index) => (
+                    <Message key={index}  {...getMessageProps(user as User, location, message)}/>
+                ))}
                 <div ref={bottomRef}></div>
             </div>
-            <MessageInput receiverId={location.state._id}/>
+            <MessageInput receiver_id={location.state._id}/>
         </div>
     )
 }

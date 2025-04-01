@@ -19,5 +19,5 @@ export type SessionContext = {
 
 }
 
-const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
+export const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
 export const BASE_URL = `http://localhost:${SERVER_PORT}`
