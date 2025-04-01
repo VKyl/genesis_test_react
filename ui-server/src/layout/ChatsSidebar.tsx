@@ -2,7 +2,7 @@ import '@styles/ChatsSidebar.css'
 import SearchFilter from "@components/SearchFilter.tsx";
 import React from "react";
 import {useSelect} from "@hooks/useSelect.ts";
-import {ChatResponseDTO} from "../api/chats.ts";
+import {ChatListItemResponseDTO} from "../api/chats.ts";
 import ChatCard from "../components/ChatCard.tsx";
 import {useChatsList} from "../hooks/useChatsList.ts";
 
@@ -23,7 +23,7 @@ const ChatsSidebar = () => {
             <li>All chats</li>
         </ul>
         <ul className="chats">
-            {!data.length ? <EmptyChatCards/> : <ChatCards chats={data}/>}
+            {!data?.length ? <EmptyChatCards/> : <ChatCards chats={data}/>}
         </ul>
         <SearchFilter/>
     </aside>
@@ -33,7 +33,7 @@ const EmptyChatCards = () => (
     <p style={{alignSelf: "center", marginTop: "15px", color: "#d8d8d0"}}>No chats</p>
 )
 
-const ChatCards = ({chats}: { chats: ChatResponseDTO[] }) => {
+const ChatCards = ({chats}: { chats: ChatListItemResponseDTO[] }) => {
     return chats.map((chat: any, index: number) => (
                 <li key={index} className={resolveChatCardClass(index)}>
                     <ChatCard  {...chat["users"][0]} index={index} lastMessage={chat.lastMessage} is_online={chat.is_online}/>

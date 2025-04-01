@@ -1,5 +1,1 @@
-
-
-const messagesQuery = () => {
-
-}
+import {BASE_URL} from "../utils/constants.ts";
