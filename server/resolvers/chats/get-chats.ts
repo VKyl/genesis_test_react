@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {Types} from "mongoose";
 import {DatabaseService} from "../../services/database-service";
-import {DB_COLLECTIONS} from "../../services/constants";
+import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../../services/constants";
 import {validateRequest} from "../../constants";
 import {ChatResponseDTO} from "../../entities/chat";
 import {getUsersByIds} from "../user/user-data";
@@ -34,7 +34,6 @@ export const getChats = async (req: Request, res: Response) => {
                 return getChatResponse(chat, receiver)
             }),
         );
-
 
         res.status(200).json(parsedChats);
     } catch (err) {

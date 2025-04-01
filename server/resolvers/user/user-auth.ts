@@ -14,8 +14,9 @@ const createUser = async (user: ParsedUrlQuery) => {
         };
         return await DatabaseService.instance.createEntity(doc, DB_COLLECTIONS.USERS)
         .then(res => {
-            if(!user.is_bot && !!res?.insertedId)
+            if(!user.is_bot && !!res?.insertedId){
                 createAllChats(res.insertedId.toHexString());
+            }
             return res?.insertedId
         })
     }

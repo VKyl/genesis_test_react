@@ -3,7 +3,7 @@ import '@styles/Chat.css'
 import {useWindowVirtualizer} from "@tanstack/react-virtual";
 import Message, {MessageProps} from "../components/Message.tsx";
 import MessageInput from "../components/MessageInput.tsx";
-import {useEffect, useRef} from "react";
+import {memo, useEffect, useRef} from "react";
 
  const messages: MessageProps[] = [{sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: false},
                                       {sender_name: "Some name", message: "Hello World!", timestamp: "17:40", is_current_user: true},
@@ -53,4 +53,4 @@ const Chat = () => {
     )
 }
 
-export default Chat;
+export default memo(Chat);

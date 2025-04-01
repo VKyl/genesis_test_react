@@ -9,6 +9,7 @@ import {
 import {DatabaseService} from "./services/database-service";
 import {SessionService} from "./services/session-service";
 import {authorize, userAuthResolver} from "./resolvers/user/user-auth";
+import cors from "cors";
 import express from "express";
 import {userMessageHandler} from "./resolvers/user/user-interaction";
 import {newChatResolver} from "./resolvers/chats/new-chat";
@@ -16,9 +17,10 @@ import {getChat, getChats} from "./resolvers/chats/get-chats";
 import {setupBots} from "./spec/botsSetup";
 
 const app = express()
+app.use(cors({origin: "*"}))
 const server = app.listen(3000)
-
 const io = new Server(server, {cors: {origin: "*"}});
+
 DatabaseService.instance.connect(DB_LINK).then(() =>
     setupBots()
 );

@@ -1,7 +1,8 @@
 import {DatabaseService} from "../services/database-service";
-import {DB_COLLECTIONS} from "../services/constants";
+import {DB_COLLECTIONS, NOTIFICATION_TYPE} from "../services/constants";
 import http from "http";
 import {chatRequestOptions} from "../constants";
+import {SessionService} from "../services/session-service";
 
 export const createAllChats = async (u_id: string) => {
     const users = await DatabaseService.instance.getCollection(DB_COLLECTIONS.USERS);
@@ -31,4 +32,5 @@ export const createAllChats = async (u_id: string) => {
             req.end();
         });
     }
+    SessionService.instance.broadcastAll({type: NOTIFICATION_TYPE.GET_CHATS, payload: ""})
 };

@@ -1,21 +1,15 @@
 import "@styles/ChatCard.css"
 import {Link} from "react-router-dom";
+import {ChatCardType} from "../api/chats.ts";
 
-export interface ChatCardProps {
-    name: string;
-    id: string;
-    lastMessage: string;
-}
-
-const ChatCard = () => {
-
-    return (<Link to={`/chat/1`} className={"chat-card"}>
-            <div className="avatar-wrapper">
-                <img src="/avatar3.png" alt="avatar"/>
+const ChatCard = ({...chat}: ChatCardType) => {
+    return (<Link to={`/chats/${chat.id}`} className={"chat-card"}>
+            <div className={"avatar-wrapper" + (chat.is_online ? " online" : "")}>
+                <img src={"/"+chat.image} alt="avatar"/>
             </div>
             <div className="info">
-                <p><strong>User name</strong></p>
-                <p className="last-message">Some last message...</p>
+                <p><strong>{chat.name}</strong></p>
+                <p className="last-message">{chat.lastMessage.slice(0, 35) + "..."}</p>
             </div>
         </Link>)
 }
