@@ -2,17 +2,19 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import WelcomePage from "@pages/WelcomePage";
 import ChatWindow from "@pages/Chat";
 import ChatsSidebar from "./ChatsSidebar.tsx";
-import React, {useContext} from "react";
+import React, {Suspense, useContext} from "react";
 import '@styles/Layout.css'
 import {AuthContext} from "../components/AuthContextProvider.tsx";
 
 const LoggedLayout = () => <div className="main-layout">
     <main>
-        <Routes>
-            <Route path="/chats" Component={WelcomePage}/>
-            <Route path="/chats/:id" Component={ChatWindow}/>
-            <Route path="*" element={<Navigate to="/chats" replace/>}/>
-        </Routes>
+        <Suspense fallback={null}>
+            <Routes>
+                <Route path="/chats" Component={WelcomePage}/>
+                <Route path="/chats/:id" Component={ChatWindow}/>
+                <Route path="*" element={<Navigate to="/chats" replace/>}/>
+            </Routes>
+        </Suspense>
     </main>
     <ChatsSidebar/>
 </div>

@@ -19,6 +19,7 @@
 
 .chat-window {
     display: flex;
+    background: var(--primary-bg-color);
     flex-direction: column;
     max-height: 90%;
     height: 100%;
@@ -52,3 +53,10 @@
     width: 100%;
 }
 
+.loading-chats{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-bg-color);
+}

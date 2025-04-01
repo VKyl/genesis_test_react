@@ -2,6 +2,7 @@
     display: grid;
     height: 100%;
     grid-template-columns: 70% auto;
+    background: var(--primary-bg-color);
 }
 
 .unsigned-layout{

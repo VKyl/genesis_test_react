@@ -1,5 +1,5 @@
 import "@styles/Input.css";
-import { useContext, useRef } from "react";
+import {useContext, useRef} from "react";
 import { AuthContext } from "./AuthContextProvider.tsx";
 import { useMutation } from "@tanstack/react-query";
 import { sendMessage } from "../api/messages.ts";

@@ -40,7 +40,7 @@ aside .chats{
         padding: 15px;
         transition: .3s;
     }
-    li:has(> a:hover), li.selected{
+    li:has(> .chat-card:hover), li.selected{
         background: var(--primary-bg-color);
     }
 }
