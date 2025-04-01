@@ -34,10 +34,26 @@ my choice was MongoDB because that's
 easy for storing and retrieving data. 
 So I needed an extra library `mongoose` and also
 I've added `TypeScript` to **Node.js** for better 
-control on types.
+control on types and express for REST API.
 
 ### All of my services are in `/services` folder, a bit about them:
 
-I decided to separate the DB interactions into a separate
-singleton `DatabaseService()`
+I decided to separate the DB interactions into a
+singleton class `DatabaseService()` either with `SessionService()`
 
+Also, bots and creating chats as new user appears made in way, 
+that they could be easily utilized without breaking the main logic
+
+## Frontend
+
+Queries are done using useQuery hook from `react-query`
+For post calls used axios, and for notifications about updates
+socket.io-client
+
+## About chats and bots
+
+At each new session new bots are created (this was done intentionally,
+to show offline/online feature).
+
+And each time new `USER`authenticates, server creates new chats with `EVERY` 
+user that was created before
