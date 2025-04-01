@@ -5,7 +5,6 @@ import {useSelect} from "@hooks/useSelect.ts";
 import {ChatListItemResponseDTO} from "../api/chats.ts";
 import ChatCard from "../components/ChatCard.tsx";
 import {useChatsList} from "../hooks/useChatsList.ts";
-import {useLocation} from "react-router-dom";
 
 type Filters = {
     strictOnline: boolean,
@@ -50,13 +49,11 @@ const ChatCards = ({chats, filters}: { chats: ChatListItemResponseDTO[], filters
     return chats
         .filter((chat) => validateFilters(chat, filters))
         .map((chat, index: number) => (
-                <li key={index} className={resolveChatCardClass(chat.users[0]._id)}>
-                    <ChatCard
-                        {...chat["users"][0]}
-                        lastMessage={chat.lastMessage}
-                        is_online={chat.is_online}
-                    />
-                </li>
+                <ChatCard key={index + chat.lastMessage}
+                    {...chat["users"][0]}
+                    lastMessage={chat.lastMessage}
+                    is_online={chat.is_online}
+                />
             ))
 }
 
@@ -65,11 +62,6 @@ const validateFilters = (chat: ChatListItemResponseDTO, filters: Filters) =>{
     const nameMatch = name?.toLowerCase().includes(filters.stringQuery?.toLowerCase().trim())
     const statusMatch = !filters.strictOnline || chat.is_online
     return statusMatch && nameMatch;
-}
-
-export const resolveChatCardClass = (id: string) => {
-    const location = useLocation();
-    return location.pathname == `/chats/${id}` ? "selected" : ""
 }
 
 export default ChatsSidebar

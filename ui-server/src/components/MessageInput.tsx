@@ -14,7 +14,8 @@ const MessageInput = ({ receiver_id }: MessageInputProps) => {
     const { mutateAsync: sendMessageAction } = useMutation({
         mutationFn: sendMessage,
     });
-    const handleSendMessage = async () => {
+    const handleSendMessage = async (e: any) => {
+        e.preventDefault();
         try {
             await sendMessageAction({
                 sender_id: user?.u_id as string,
@@ -30,12 +31,12 @@ const MessageInput = ({ receiver_id }: MessageInputProps) => {
     };
 
     return (
-        <div className="input-section">
+        <form className="input-section">
               <input ref={inputRef} placeholder="Start chatting" />
-              <button onClick={handleSendMessage} type="submit">
+              <button onClick={(e) => handleSendMessage(e)} type="submit">
                 Send message
               </button>
-        </div>
+        </form>
     );
 };
 

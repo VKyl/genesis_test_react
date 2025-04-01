@@ -14,6 +14,7 @@ export const useChatInfo = (u2_id: string) => {
     });
     useEffect(() => {
         socket.on(NOTIFICATION_TYPE.MESSAGE,(message: MessageResponseDTO) => {
+            console.log("here")
             if([u2_id, user.u_id].includes(message.sender_id)) refetch()
         })
     }, [])
