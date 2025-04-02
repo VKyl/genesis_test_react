@@ -1,4 +1,4 @@
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {AuthContext} from "../components/AuthContextProvider.tsx";
 import {NOTIFICATION_TYPE, User} from "../utils/constants.ts";
 import {useQuery} from "@tanstack/react-query";
@@ -17,11 +17,8 @@ export const useChatInfo = (u2_id: string) => {
         queryFn: async() => chatInfoQuery(user.u_id as string, u2_id),
         refetchOnWindowFocus: false
     });
-
-    useEffect(() => {
-        socket.on(NOTIFICATION_TYPE.MESSAGE,async (message: MessageResponseDTO) => {
-            if([u2_id, user.u_id].includes(message.sender_id)) await refetch()
-        })
-    }, [])
+    socket.on(NOTIFICATION_TYPE.MESSAGE, (message: MessageResponseDTO) => {
+            if([u2_id, user.u_id].includes(message.sender_id)) refetch()
+    })
     return {data, error, isLoading}
 }

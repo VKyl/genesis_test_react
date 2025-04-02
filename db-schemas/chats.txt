@@ -1,0 +1,50 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    title: 'Chat Validation Schema',
+    required: [
+      '_id',
+      'users',
+      'messages'
+    ],
+    properties: {
+      _id: {
+        bsonType: 'objectId',
+      },
+      users: {
+        bsonType: 'array',
+        DBRef('ns', 'oid')
+        items: {
+          bsonType: 'objectId'
+        },
+        minItems: 2,
+        maxItems: 2
+      },
+      messages: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          uniqueItems: true,
+          required: [
+            'sender_id',
+            'message',
+            'timestamp'
+          ],
+          properties: {
+            sender_id: {
+              bsonType: 'objectId'
+            },
+            timestamp: {
+              bsonType: 'string'
+            },
+            message: {
+              bsonType: 'string',
+              minLength: 1
+            }
+          }
+        }
+      }
+    },
+    additionalProperties: false
+  }
+}

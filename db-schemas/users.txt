@@ -1,0 +1,27 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    title: 'User Validation Schema',
+    required: [
+      '_id',
+      'name',
+      'is_bot',
+      'image'
+    ],
+    properties: {
+      _id: {
+        bsonType: 'objectId'
+      },
+      name: {
+        bsonType: 'string'
+      },
+      is_bot: {
+        bsonType: 'bool'
+      },
+      image: {
+        bsonType: 'string'
+      }
+    },
+    additionalProperties: false
+  }
+}
