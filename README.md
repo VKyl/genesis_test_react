@@ -2,7 +2,7 @@
 #### Credentials: Viktor Kyliukh 
 
 > ## **⚠️ IMPORTANT️**
-> #### Create you own .env file in root and ui-server directories with ports and links (look up in .env.example)
+> #### Create you own .env file in root directory with ports and links (look up in .env.example)
 
 Start the app with Docker desktop from root directory:
 ```bash
