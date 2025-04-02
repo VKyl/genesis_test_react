@@ -14,6 +14,8 @@ Docker Engine:
 docker-compose up --build
 ```
 
+## Доєднуватися до localhost!!!!
+
 # About the solution:
 
 App is containerized with Docker, and consists of 3 images:
