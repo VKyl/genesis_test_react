@@ -8,7 +8,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && npx tsc && cd .. && docker compose up --build",
+    "start": "docker compose up --build",
     "start-docker-engine": "cd server && npx tsc && cd .. && docker-compose up --build"
   },
   "keywords": [],
