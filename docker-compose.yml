@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   mongodb:
     env_file:
@@ -7,11 +8,12 @@ services:
     command: --quiet
     container_name: mongodb
     ports:
-      - "${DB_PORT}:27017"
+      - "${DB_PORT}:${DB_PORT}"
     networks:
       - app-network
     volumes:
       - mongodb-data:/data/db
+      - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     restart: unless-stopped
 
   server:
@@ -21,7 +23,7 @@ services:
       context: ./server
     image: genesis-backend
     ports:
-      - "${SERVER_PORT}:3000"
+      - "${SERVER_PORT}:${SERVER_PORT}"
     environment:
       - DB_LINK=${DB_LINK}
     depends_on:
@@ -39,12 +41,13 @@ services:
       context: ./ui-server
     image: genesis-frontend
     ports:
-      - "${UI_PORT}:5173"
+      - "${UI_PORT}:${UI_PORT}"
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
+
 volumes:
   mongodb-data:

@@ -1,6 +1,9 @@
 # Test chat app
 #### Credentials: Viktor Kyliukh 
 
+> ## **⚠️ IMPORTANT️**
+> #### Create you own .env file in root and ui-server directories with ports and links (look up in .env.example)
+
 Start the app with Docker desktop from root directory:
 ```bash
 npm run start
@@ -10,9 +13,6 @@ Docker Engine:
 ```bash
 npm run start-docker-engine
 ```
-
-> ## **⚠️ IMPORTANT️**
-> #### Create you own .env file with ports and links (look up in .env.example)
 
 # About the solution:
 

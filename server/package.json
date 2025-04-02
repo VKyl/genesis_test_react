@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start-server": "node dist/index.js",
+    "start-server": "npx tsc && node dist/index.js",
     "build": "npx tsc && docker compose up --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
