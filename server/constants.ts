@@ -65,3 +65,4 @@ export const chatRequestOptions = {
 };
 
 export const DB_LINK: string = process.env.DB_LINK || ""
+export const SERVER_PORT: string = process.env.SERVER_PORT || "3000";

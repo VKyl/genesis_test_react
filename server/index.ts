@@ -3,7 +3,7 @@ import {
     chatCreationValidators,
     DB_LINK,
     getChatsListValidators, getChatValidators,
-    messageSendingValidators,
+    messageSendingValidators, SERVER_PORT,
     SocketType
 } from "./constants";
 import {DatabaseService} from "./services/database-service";
@@ -18,7 +18,7 @@ import {setupBots} from "./spec/botsSetup";
 
 const app = express()
 app.use(cors({origin: "*"}))
-const server = app.listen(3000)
+const server = app.listen(SERVER_PORT)
 const io = new Server(server, {cors: {origin: "*"}});
 
 DatabaseService.instance.connect(DB_LINK).then(() =>
