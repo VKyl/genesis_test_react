@@ -25,8 +25,8 @@ const defaultBotHandlers = (socket: Socket, bot: Bot) => {
 }
 
 const spamBotHandlers = (socket: Socket, bot: Bot) => {
-    const MIN_TIMEOUT = 1000
-    const MAX_TIMEOUT = 12000
+    const MIN_TIMEOUT = 10000
+    const MAX_TIMEOUT = 120000
     const sendMessage = (u_id: string) => {
         const req = http.request(messageRequestOptions)
         const message = {sender_id: u_id, message: "", timestamp: Date.now().toString()}
