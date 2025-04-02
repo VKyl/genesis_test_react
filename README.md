@@ -57,3 +57,6 @@ to show offline/online feature).
 
 And each time new `USER`authenticates, server creates new chats with `EVERY` 
 user that was created before
+
+Some realisations were intentionally left unoptimised due to the lack of time
+I could've improve chat list update (without refreshing all chats in the list)
