@@ -6,12 +6,12 @@
 
 Start the app with Docker desktop from root directory:
 ```bash
-npm run start
+docker compose up --build
 ```
 Or
 Docker Engine:
 ```bash
-npm run start-docker-engine
+docker-compose up --build
 ```
 
 # About the solution:
