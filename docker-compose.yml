@@ -8,7 +8,7 @@ services:
     command: --quiet
     container_name: mongodb
     ports:
-      - "${DB_PORT}:27017"
+      - "${DB_PORT}:${DB_PORT}"
     networks:
       - app-network
     volumes:
@@ -23,7 +23,7 @@ services:
       context: ./server
     image: genesis-backend
     ports:
-      - "${SERVER_PORT}:3000"
+      - "${SERVER_PORT}:${SERVER_PORT}"
     environment:
       - DB_LINK=${DB_LINK}
     depends_on:
@@ -41,7 +41,7 @@ services:
       context: ./ui-server
     image: genesis-frontend
     ports:
-      - "${UI_PORT}:5173"
+      - "${UI_PORT}:${UI_PORT}"
     networks:
       - app-network
 
